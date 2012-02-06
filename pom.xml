@@ -57,7 +57,6 @@
       <artifactId>joda-convert</artifactId>
       <version>1.1</version>
       <scope>compile</scope>
-      <optional>true</optional>
     </dependency> 
     <!-- <dependency>
       <groupId>junit</groupId>
@@ -110,9 +109,8 @@
   </reporting>
   <distributionManagement>
     <snapshotRepository>
-      <id>atlassian-m2-snapshot-repository</id>
-      <name>Atlassian Public Snapshot Repository</name>
-      <url>https://maven.atlassian.com/public-snapshot</url>
+      <id>atlassian-3rdparty-snapshot</id>
+      <url></url>
     </snapshotRepository>
   </distributionManagement>
   <profiles>
@@ -120,9 +118,8 @@
       <id>release</id>
       <distributionManagement>
         <repository>
-          <id>atlassian-m2-repository</id>
-          <name>Atlassian Public Repository</name>
-          <url>https://maven.atlassian.com/public</url>
+          <id>atlassian-3rdparty</id>
+          <url></url>
         </repository>
       </distributionManagement>
     </profile>
@@ -130,8 +127,8 @@
       <id>snapshot</id>
       <distributionManagement>
         <repository>
-          <id>scala-tools.org</id>
-          <url>http://nexus.scala-tools.org/content/repositories/snapshots</url>
+          <id>atlassian-3rdparty-snapshot</id>
+          <url></url>
         </repository>
       </distributionManagement>
     </profile>
