@@ -12,7 +12,7 @@
   <artifactId>scala-time-${scala.version}</artifactId>
   <packaging>jar</packaging>
   <name>Scala-Time</name>
-  <version>0.2-SNAPSHOT</version>
+  <version>0.2</version>
   <url>http://github.com/jorgeortiz85/scala-javautils</url>
   <inceptionYear>2009</inceptionYear>
   <description>A Scala wrapper for Joda Time</description>
@@ -110,11 +110,11 @@
   <distributionManagement>
     <repository>
       <id>atlassian-3rdparty</id>
-      <url></url>
+      <url />
     </repository>
     <snapshotRepository>
       <id>atlassian-3rdparty-snapshot</id>
-      <url></url>
+      <url />
     </snapshotRepository>
   </distributionManagement>
   <profiles>
@@ -123,7 +123,7 @@
       <distributionManagement>
         <repository>
           <id>atlassian-3rdparty</id>
-          <url></url>
+          <url />
         </repository>
       </distributionManagement>
     </profile>
@@ -132,7 +132,7 @@
       <distributionManagement>
         <repository>
           <id>atlassian-3rdparty-snapshot</id>
-          <url></url>
+          <url />
         </repository>
       </distributionManagement>
     </profile>
