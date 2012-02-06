@@ -108,6 +108,10 @@
     </plugins>
   </reporting>
   <distributionManagement>
+    <repository>
+      <id>atlassian-3rdparty</id>
+      <url></url>
+    </repository>
     <snapshotRepository>
       <id>atlassian-3rdparty-snapshot</id>
       <url></url>
