@@ -1,18 +1,11 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <!-- 
-  <parent>
-    <groupId>com.atlassian.pom</groupId>
-    <artifactId>atlassian-public-pom</artifactId>
-    <version>28</version>
-  </parent>
-   -->
 
   <groupId>com.atlassian.scala</groupId>
-  <artifactId>scala-time-${scala.version}</artifactId>
+  <artifactId>scala-time</artifactId>
   <packaging>jar</packaging>
   <name>Scala-Time</name>
-  <version>0.3-SNAPSHOT</version>
+  <version>${scala.version}-atlassian-0.3-SNAPSHOT</version>
   <url>http://github.com/jorgeortiz85/scala-javautils</url>
   <inceptionYear>2009</inceptionYear>
   <description>A Scala wrapper for Joda Time</description>
@@ -108,14 +101,16 @@
     </plugins>
   </reporting>
   <distributionManagement>
-    <repository>
-      <id>atlassian-3rdparty</id>
-      <url />
-    </repository>
-    <snapshotRepository>
-      <id>atlassian-3rdparty-snapshot</id>
-      <url />
-    </snapshotRepository>
+	<repository>
+		<id>atlassian-3rdparty</id>
+		<name>Atlassian 3rdparty Repository</name>
+		<url>https://maven.atlassian.com/3rdparty</url>
+	</repository>
+	<snapshotRepository>
+		<id>atlassian-3rdparty-snapshot</id>
+		<name>Atlassian 3rdparty Snapshot Repository</name>
+		<url>https://maven.atlassian.com/3rdparty-snapshot</url>
+	</snapshotRepository>
   </distributionManagement>
   <profiles>
     <profile>
@@ -123,7 +118,7 @@
       <distributionManagement>
         <repository>
           <id>atlassian-3rdparty</id>
-          <url />
+          <url>https://maven.atlassian.com/3rdparty</url>
         </repository>
       </distributionManagement>
     </profile>
@@ -132,7 +127,7 @@
       <distributionManagement>
         <repository>
           <id>atlassian-3rdparty-snapshot</id>
-          <url />
+          <url>https://maven.atlassian.com/3rdparty-snapshot</url>
         </repository>
       </distributionManagement>
     </profile>
