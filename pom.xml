@@ -1,12 +1,11 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>org.scala-tools.time</groupId>
   <artifactId>scala-time</artifactId>
   <packaging>jar</packaging>
   <name>Scala-Time</name>
-  <version>${scala.version}-atlassian-0.4-SNAPSHOT</version>
+  <version>2.9.2-atlassian-0.5</version>
   <url>http://github.com/jorgeortiz85/scala-javautils</url>
   <inceptionYear>2009</inceptionYear>
   <description>A Scala wrapper for Joda Time</description>
