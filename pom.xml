@@ -1,11 +1,12 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>org.scala-tools.time</groupId>
   <artifactId>scala-time</artifactId>
   <packaging>jar</packaging>
   <name>Scala-Time</name>
-  <version>2.9.1-atlassian-0.4-SNAPSHOT</version>
+  <version>${scala.version}-atlassian-0.4-SNAPSHOT</version>
   <url>http://github.com/jorgeortiz85/scala-javautils</url>
   <inceptionYear>2009</inceptionYear>
   <description>A Scala wrapper for Joda Time</description>
@@ -31,38 +32,35 @@
   </scm>
 
   <properties>
-    <scala.version>2.9.1</scala.version>
+    <scala.version>2.9.2</scala.version>
   </properties>
 
   <dependencies>
+
     <dependency>
       <groupId>org.scala-lang</groupId>
       <artifactId>scala-library</artifactId>
       <version>${scala.version}</version>
+      <scope>provided</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>org.scala-lang</groupId>
+      <artifactId>jline</artifactId>
+      <version>${scala.version}</version>
+      <scope>provided</scope>
     </dependency>
     <dependency>
       <groupId>joda-time</groupId>
       <artifactId>joda-time</artifactId>
-      <version>2.0</version>
+      <version>2.1</version>
     </dependency>
     <dependency>
       <groupId>org.joda</groupId>
       <artifactId>joda-convert</artifactId>
       <version>1.1</version>
       <scope>compile</scope>
-    </dependency> 
-    <!-- <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>4.4</version>
-      <scope>test</scope>
     </dependency>
-    <dependency>
-      <groupId>org.specs</groupId>
-      <artifactId>specs</artifactId>
-      <version>1.2.5</version>
-      <scope>test</scope>
-    </dependency> -->
   </dependencies>
 
   <build>
@@ -70,25 +68,57 @@
     <testSourceDirectory>src/test/scala</testSourceDirectory>
     <plugins>
       <plugin>
-        <groupId>org.scala-tools</groupId>
-        <artifactId>maven-scala-plugin</artifactId>
+        <groupId>net.alchim31.maven</groupId>
+        <artifactId>scala-maven-plugin</artifactId>
+        <version>3.1.0</version>
         <executions>
           <execution>
+            <id>scala-compile-first</id>
+            <phase>process-resources</phase>
             <goals>
+              <goal>add-source</goal>
               <goal>compile</goal>
+            </goals>
+          </execution>
+          <execution>
+            <id>scala-test-compile</id>
+            <phase>process-test-resources</phase>
+            <goals>
               <goal>testCompile</goal>
             </goals>
           </execution>
         </executions>
         <configuration>
-          <scalaVersion>${scala.version}</scalaVersion>
-          <args>
-            <arg>-target:jvm-1.5</arg>
-          </args>
+          <!-- we don't want the scala compiler to go into GC catalepsy, it's slow enough as it is. running in-process causes 
+            classpath problems. -->
+          <jvmArgs>
+            <param>-server</param>
+            <param>-XX:+DisableExplicitGC</param>
+            <param>-XX:+UseParallelOldGC</param>
+          </jvmArgs>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <configuration>
+          <includes>
+            <!-- due to magic maven, these need .java not .scala -->
+            <include>**/*Spec.java</include>
+            <include>**/*Test.java</include>
+          </includes>
+        </configuration>
+      </plugin>
+      <plugin>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <source>1.6</source>
+          <target>1.6</target>
         </configuration>
       </plugin>
     </plugins>
   </build>
+
   <reporting>
     <plugins>
       <plugin>
@@ -101,16 +131,16 @@
     </plugins>
   </reporting>
   <distributionManagement>
-	<repository>
-		<id>atlassian-3rdparty</id>
-		<name>Atlassian 3rdparty Repository</name>
-		<url>https://maven.atlassian.com/3rdparty</url>
-	</repository>
-	<snapshotRepository>
-		<id>atlassian-3rdparty-snapshot</id>
-		<name>Atlassian 3rdparty Snapshot Repository</name>
-		<url>https://maven.atlassian.com/3rdparty-snapshot</url>
-	</snapshotRepository>
+    <repository>
+      <id>atlassian-3rdparty</id>
+      <name>Atlassian 3rdparty Repository</name>
+      <url>https://maven.atlassian.com/3rdparty</url>
+    </repository>
+    <snapshotRepository>
+      <id>atlassian-3rdparty-snapshot</id>
+      <name>Atlassian 3rdparty Snapshot Repository</name>
+      <url>https://maven.atlassian.com/3rdparty-snapshot</url>
+    </snapshotRepository>
   </distributionManagement>
   <profiles>
     <profile>
